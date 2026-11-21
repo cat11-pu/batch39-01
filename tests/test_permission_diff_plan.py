@@ -91,6 +91,7 @@ def test_action_case_is_folded():
 def test_scope_narrowing_is_marked():
     before = [stmt(resource="arn:aws:s3:::bucket/*")]
     after = [stmt(resource="arn:aws:s3:::bucket/public/*")]
+    result = plan().diff(before, after)
     assert result["narrowed"]
 
 
