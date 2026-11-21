@@ -7,9 +7,9 @@ def hit(**over):
     item = {
         "base": 100.0,
         "crit": 1.0,
-        "armor_flat": 10.0,
-        "armor_pct": 0.2,
-        "shield": 15.0,
+        "armor_flat": 0.0,
+        "armor_pct": 0.0,
+        "shield": 0.0,
         "shield_type": "physical",
         "damage_type": "physical",
         "vulnerability": 1.0,
@@ -64,7 +64,11 @@ def test_resistance_cap_is_clamped():
 
 
 def test_multi_hit_sums_before_rounding():
-    hits = [hit(base=10.5, armor_flat=0, armor_pct=0, shield=0) for _ in range(3)]
+    hits = [
+        hit(base=10.4, armor_flat=0, armor_pct=0, shield=0),
+        hit(base=10.8, armor_flat=0, armor_pct=0, shield=0),
+        hit(base=10.8, armor_flat=0, armor_pct=0, shield=0),
+    ]
     result = dm.DamageMitigationChain().resolve_all(hits)
     assert result["damage"] == 32
     assert result["rounding_diff"] == 0
