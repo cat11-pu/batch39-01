@@ -17,7 +17,9 @@ def mesh():
 
 def repair(vertices=None, indices=None, **over):
     if vertices is None:
-        vertices, indices = mesh()
+        vertices, default_indices = mesh()
+        if indices is None:
+            indices = default_indices
     return mw.MeshWindingRepair().repair(vertices, indices, **over)
 
 
