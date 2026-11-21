@@ -15,8 +15,8 @@ def binding(**over):
     return ob.OAuthStateBinding(**kwargs)
 
 
-def start(b, provider="alpha", action="login", session="s-1", now=0):
-    return b.issue(provider, REDIRECT, action, session, now=now)
+def start(b, provider="alpha", action="login", session="s-1", now=0, tenant="t-1"):
+    return b.issue(provider, REDIRECT, action, session, tenant=tenant, now=now)
 
 
 def test_state_can_only_be_consumed_once():
