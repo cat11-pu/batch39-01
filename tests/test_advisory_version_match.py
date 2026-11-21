@@ -4,7 +4,7 @@ import advisory_version_match as av
 
 
 def adv(id="A-1", package="pkg", ranges=None, severity="high", fixed=None):
-    return {"id": id, "package": package, "ranges": ranges or [("<", "2.0.0")], "severity": severity, "fixed": fixed}
+    return {"id": id, "package": package, "ranges": ranges if ranges is not None else [("<", "2.0.0")], "severity": severity, "fixed": fixed}
 
 
 def match(package, version, advisories, rename=None):
